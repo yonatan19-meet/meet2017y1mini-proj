@@ -7,9 +7,14 @@ SIZE_X=800
 SIZE_Y=500
 turtle.setup(SIZE_X,SIZE_Y)
 turtle.penup()
-turtle.goto(-360,-190)
+turtle.goto(-340,-190)
 turtle.pendown()
+turtle.goto(-340,190)
+turtle.goto(340,190)
+turtle.goto(340,-190)
+turtle.goto(-340,-190)
 turtle.penup()
+turtle.goto(0,0)
 
 SQUARE_SIZE = 20
 START_LENGTH = 1
@@ -70,7 +75,7 @@ SPACEBAR = "space" # Careful, it's not supposed to be
 UP = 0
 #1. Make variables LEFT, DOWN, and RIGHT with values 1, 2, and 3
 ####WRITE YOUR CODE HERE!!
-LEFT = 1
+LEFT = 15
 DOWN = 2
 RIGHT = 3
 
@@ -82,30 +87,46 @@ RIGHT_EDGE = 400
 LEFT_EDGE = -400
 def up():
     global direction #snake direction is global (same everywhere)
-    direction=UP #Change direction to up
+    if direction == DOWN:
+        down()
+        print("Impossible direction! Can't go down whike the direction is up!")
+    else:
+        direction=UP #Change direction to up
     #Update the snake drawing <- remember me later
-    print("You pressed the up key!")
+        print("You pressed the up key!")
 
 direction = LEFT
 def left():
     global direction #snake direction is global (same everywhere)
-    direction=LEFT #Change direction to left
+    if direction == RIGHT:
+        right()
+        print("Impossible direction! Can't go left whike the direction is right!")
+    else:
+        direction=LEFT #Change direction to left
     #Update the snake drawing <- remember me later
-    print("You pressed the left key!")
+        print("You pressed the left key!")
 
 direction = DOWN
 def down():
     global direction #snake direction is global (same everywhere)
-    direction=DOWN #Change direction to down
+    if direction==UP:
+        up()
+        print("Impossible direction! Can't go up whike the direction is down!")
+    else:
+        direction=DOWN #Change direction to down
      #Update the snake drawing <- remember me later
-    print("You pressed the down key!")
+        print("You pressed the down key!")
 
 direction = RIGHT
 def right():
     global direction #snake direction is global (same everywhere)
-    direction=RIGHT #Change direction to right
+    if direction == LEFT:
+        left()
+        print("Impossible direction! Can't go right whike the direction is left!")
+    else :
+        direction=RIGHT #Change direction to right
     #Update the snake drawing <- remember me later
-    print("You pressed the right key!")
+        print("You pressed the right key!")
 
 turtle.onkeypress(up, UP_ARROW)
 turtle.onkeypress(down, DOWN_ARROW)
